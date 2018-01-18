@@ -21,46 +21,16 @@
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 import { Toast } from "mint-ui";
+const API_PROXY = "https://bird.ioliu.cn/v1/?url=";
 export default {
   data() {
     return {
-      list: [
-        {
-          linkUrl: "http://y.qq.com/m/act/sfhd/120.html?ADTAG=banner",
-          picUrl:
-            "http://y.gtimg.cn/music/photo_new/T003R720x288M000001N51ji4925o5.jpg",
-          id: 13907
-        },
-        {
-          linkUrl: "http://y.qq.com/w/album.html?albummid=001qaDgp1J3vYm",
-          picUrl:
-            "http://y.gtimg.cn/music/photo_new/T003R720x288M000002ukmJ510nDTx.jpg",
-          id: 13906
-        },
-        {
-          linkUrl: "http://y.qq.com/w/album.html?albummid=000DXw404SYlo3",
-          picUrl:
-            "http://y.gtimg.cn/music/photo_new/T003R720x288M000000i0tLT1WbOGY.jpg",
-          id: 13118
-        },
-        {
-          linkUrl: "http://y.qq.com/w/album.html?albummid=0022o1Wf0KBYKq",
-          picUrl:
-            "http://y.gtimg.cn/music/photo_new/T003R720x288M000001hQosw190axa.jpg",
-          id: 13905
-        },
-        {
-          linkUrl: "https://c.y.qq.com/r/aLnS?objuin=13&ADTAG=jiaodianbb",
-          picUrl:
-            "http://y.gtimg.cn/music/photo_new/T003R720x288M000002zMIA810v42P.jpg",
-          id: 13861
-        }
-      ],
+      list: [],
       listView: [
         {
-          link: "/news/newslist",
+          link: "news/newslist",
           title: "新闻咨询",
           classaname: "mui-icon-home"
         },
@@ -91,6 +61,27 @@ export default {
         }
       ]
     };
+  },
+  mounted() {
+    this.getlist();
+  },
+  methods: {
+    getlist() {
+      axios
+        .get(
+          API_PROXY +
+            "https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg"
+        )
+        .then(
+          res => {
+            console.log(this.list);
+            this.list = res.data.data.slider;
+          },
+          error => {
+            console.log(error);
+          }
+        );
+    }
   }
 };
 </script>
@@ -114,40 +105,40 @@ export default {
 }
 .mui-grid-view.mui-grid-9 .mui-table-view-cell {
   border: none;
-}
-.mui-icon-home:before,
-.mui-icon-email:before,
-.mui-icon-chatbubble:before,
-.mui-icon-location:before,
-.mui-icon-search:before,
-.mui-icon-phone:before {
-  background-repeat: round;
-  display: block;
-  width: 50px;
-  height: 50px;
-}
-.mui-icon-home:before {
-  content: "";
-  background-image: url(../../static/imgs/1.png);
-}
-.mui-icon-email:before {
-  content: "";
-  background-image: url(../../static/imgs/2.png);
-}
-.mui-icon-chatbubble:before {
-  content: "";
-  background-image: url(../../static/imgs/3.png);
-}
-.mui-icon-location:before {
-  content: "";
-  background-image: url(../../static/imgs/4.png);
-}
-.mui-icon-search:before {
-  content: "";
-  background-image: url(../../static/imgs/5.png);
-}
-.mui-icon-phone:before {
-  content: "";
-  background-image: url(../../static/imgs/6.png);
+  .mui-icon-home:before,
+  .mui-icon-email:before,
+  .mui-icon-chatbubble:before,
+  .mui-icon-location:before,
+  .mui-icon-search:before,
+  .mui-icon-phone:before {
+    background-repeat: round;
+    display: block;
+    width: 50px;
+    height: 50px;
+  }
+  .mui-icon-home:before {
+    content: "";
+    background-image: url(../../static/imgs/1.png);
+  }
+  .mui-icon-email:before {
+    content: "";
+    background-image: url(../../static/imgs/2.png);
+  }
+  .mui-icon-chatbubble:before {
+    content: "";
+    background-image: url(../../static/imgs/3.png);
+  }
+  .mui-icon-location:before {
+    content: "";
+    background-image: url(../../static/imgs/4.png);
+  }
+  .mui-icon-search:before {
+    content: "";
+    background-image: url(../../static/imgs/5.png);
+  }
+  .mui-icon-phone:before {
+    content: "";
+    background-image: url(../../static/imgs/6.png);
+  }
 }
 </style>

@@ -5,6 +5,7 @@ import Router from 'vue-router'
 import home from '@/components/home.vue'
 import shopcar from './../components/shopcar/car.vue'
 import Register from './../components/account/Register.vue'
+import Newslist from './../components/news/newslist.vue'
 // 将vue-router对象绑定到vue对象上
 Vue.use(Router)
 
@@ -27,6 +28,10 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: Register
+    }, {
+      path: '/news/newslist',
+      name: 'newslist',
+      component: Newslist
     }
   ]
 })
