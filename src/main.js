@@ -9,6 +9,7 @@ import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 // 导入mui的css文件 css文件没有导出对象
 import './../static/mui/css/mui.css';
+import './../static/css/site.scss';
 // 在vue中使用mint-ui
 Vue.use(MintUI)
 Vue.config.productionTip = false
