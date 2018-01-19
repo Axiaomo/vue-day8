@@ -9,16 +9,17 @@
             </h4>
         </div>
         <div id="content" class="newinfo" v-html="info.body">
-
         </div>
-
+        <!-- 评论组件 -->
+        <comment :id="id"></comment>
     </div>
 </template>
 
 <script>
-
+// 导入评论组件
+import comment from "../subcom/comment";
+import common from "./../../kits/common.js";
 import axios from "axios";
-import common from './../../kits/common.js';
 const API_PROXY = "https://bird.ioliu.cn/v1/?url=";
 //负责到处.vue这个组件对象(它本质上是一个vue对象，
 //所以vue中该定义的元素都可以使用)
@@ -40,7 +41,9 @@ export default {
     this.getinfo();
   },
 
-  components: {},
+  components: {
+      comment
+  },
 
   computed: {},
 
@@ -52,7 +55,7 @@ export default {
     // 请求服务器获取到这个id对应的详情数据对象
     getinfo() {
       axios
-        .get(API_PROXY + common.apidomain+"/api/4/news/" + this.id)
+        .get(API_PROXY + common.apidomain + "/api/4/news/" + this.id)
         .then(res => {
           console.log(res.data);
           this.info = res.data;
@@ -65,7 +68,7 @@ export default {
 };
 </script>
 <style lang='scss'>
-@import './../../../static/css/NewsInfo.min.css';
+@import "./../../../static/css/NewsInfo.min.css";
 .title {
   height: 200px;
   overflow: hidden;
