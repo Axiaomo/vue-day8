@@ -2,14 +2,14 @@
   <div id="tmpl">
     <!-- 滚动条minu-ui -->
     <mt-swipe :auto="4000">
-      <mt-swipe-item v-for="item in list">
+      <mt-swipe-item v-for="item in list" :key="item.id">
         <a :href="item.linkUrl"><img :src="item.picUrl" /> </a>
       </mt-swipe-item>
     </mt-swipe>
     <!-- 九宫格 mui-->
     <div class="mui-content">
       <ul class="mui-table-view mui-grid-view mui-grid-9">
-        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" v-for="item in listView">
+        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" v-for="item in listView" :key="item.id">
           <router-link :to="item.link">
             <span class="mui-icon" :class="item.classaname"></span>
             <div class="mui-media-body">{{item.title}}</div>

@@ -6,6 +6,7 @@ import home from '@/components/home.vue'
 import shopcar from './../components/shopcar/car.vue'
 import Register from './../components/account/Register.vue'
 import Newslist from './../components/news/newslist.vue'
+import NewsInfo from './../components/news/newsinfo.vue'
 // 将vue-router对象绑定到vue对象上
 Vue.use(Router)
 
@@ -17,10 +18,12 @@ export default new Router({
       path: '/',
       redirect: 'home'
     }, {
+      // 首页
       path: '/home',
       name: 'home',
       component: home
     }, {
+      // 购物车
       path: '/shopcar',
       name: 'shopcar',
       component: shopcar
@@ -29,9 +32,16 @@ export default new Router({
       name: 'register',
       component: Register
     }, {
+      // 新闻资讯
       path: '/news/newslist',
       name: 'newslist',
       component: Newslist
+    },
+    {
+      // 新闻资讯详情页
+      path: '/news/:id',
+      name: 'Newsinfo',
+      component: NewsInfo
     }
   ]
 })
