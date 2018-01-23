@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import common from "./../../kits/common.js";
 const API_PROXY = "https://bird.ioliu.cn/v1/?url=";
 export default {
@@ -39,7 +38,7 @@ export default {
 
   methods: {
     getnewList() {
-      axios.get(API_PROXY + common.apidomain + "/api/4/news/latest").then(
+      this.axios.get(API_PROXY + common.apidomain + "/api/4/news/latest").then(
         res => {
           console.log(res);
           this.list = res.data.stories;

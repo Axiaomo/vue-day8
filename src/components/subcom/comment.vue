@@ -28,7 +28,6 @@
 </template>
 
 <script>
-import axios from "axios";
 const API_PROXY = "https://bird.ioliu.cn/v1/?url=";
 import common from "../../kits/common";
 import { Toast } from "mint-ui";
@@ -76,7 +75,7 @@ export default {
     },
     // 获取数据pageindex当前获取的是那一页的数据，默认值为1
     getlist() {
-      axios
+      this.axios
         .get(
           API_PROXY +
             common.apidomain +

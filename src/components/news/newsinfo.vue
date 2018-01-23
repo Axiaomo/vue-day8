@@ -19,7 +19,6 @@
 // 导入评论组件
 import comment from "../subcom/comment";
 import common from "./../../kits/common.js";
-import axios from "axios";
 const API_PROXY = "https://bird.ioliu.cn/v1/?url=";
 //负责到处.vue这个组件对象(它本质上是一个vue对象，
 //所以vue中该定义的元素都可以使用)
@@ -45,7 +44,7 @@ export default {
     },
     // 请求服务器获取到这个id对应的详情数据对象
     getinfo() {
-      axios
+      this.axios
         .get(API_PROXY + common.apidomain + "/api/4/news/" + this.id)
         .then(res => {
           console.log(res.data);
