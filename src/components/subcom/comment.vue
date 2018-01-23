@@ -12,7 +12,7 @@
     <!-- 2.0评论数据列表 -->
     <h3>评论列表</h3>
     <hr>
-    <div v-for="(item,index) in list" :key="item.id">
+    <div v-for="(item,index) in list" :key="index">
       <div class="title">
         <span>第{{index+1}}楼:</span>
         <span>用户:{{item.author}}</span>
@@ -22,6 +22,8 @@
         <li class="mui-table-view-cell">{{item.content}}</li>
       </ul>
     </div>
+    <!-- 3.0 获取更多按钮 -->
+    <mt-button type="danger" size="large" plain @click="getmore">加载更多</mt-button>
   </div>
 </template>
 
@@ -31,16 +33,17 @@ const API_PROXY = "https://bird.ioliu.cn/v1/?url=";
 import common from "../../kits/common";
 import { Toast } from "mint-ui";
 export default {
-  props: ["id"],
+  props: ["newsid"],
   data() {
     return {
+      pageindex: 1,
       postconent: "", //用来自动获取用户填写的评论内容
-      list: []//评论获取
+      list: [] //评论获取
     };
   },
 
   mounted() {
-    this.getlist();
+    this.getlist(this.pageindex);
   },
 
   components: {},
@@ -72,17 +75,24 @@ export default {
       this.postconent = "";
     },
     // 获取数据pageindex当前获取的是那一页的数据，默认值为1
-    getlist(pageindex) {
-      // 设默认值
-      pageindex = pageindex | 1;
+    getlist() {
       axios
         .get(
           API_PROXY +
-            common.apidomain +"/api/4/story/" +this.id +'/short-comments'
+            common.apidomain +
+            "/api/4/story/" +
+            this.newsid +
+            "/short-comments?pageindex=" + this.pageindex
         )
         .then(res => {
-          this.list=res.data.comments
+          this.list =this.list.concat(res.data.comments);
         });
+    },
+    getmore() {
+      // 1.0 this.pageindex增加1
+      this.pageindex++;
+      // 2.0 获取当前this.pageindex值对应的分页数据
+      this.getlist(this.pageindex);
     }
   }
 };
