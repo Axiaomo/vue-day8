@@ -1,28 +1,27 @@
 <!--  -->
 <template>
-    <div>
-        <div id="tmpl">
-            <!-- 1.0 图片分类 -->
-            <div id="cate">
-                <ul v-bind="{style:'width:' +ulWidth + 'px'}">
-                    <li v-for="(item,index) in cats" :key="index" @click="getImg(item.id)">{{item.name}}</li>
-                </ul>
-            </div>
-            <!-- 2.0图片列表 -->
-            <div id="imglist">
-                <ul>
-                    <li v-for="(item,index) in list" :key="index" >
-                        <div v-if="item.images !== undefined">
-                            <img v-lazy="item.images[0]">
-                            <div id="desc" v-text="item.title">
-                        </div>
-                        
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+  <div>
+    <div id="tmpl">
+      <!-- 1.0 图片分类 -->
+      <div id="cate">
+        <ul v-bind="{style:'width:' +ulWidth + 'px'}">
+          <li v-for="(item,index) in cats" :key="index" @click="getImg(item.id)">{{item.name}}</li>
+        </ul>
+      </div>
+      <!-- 2.0图片列表 -->
+      <div id="imglist">
+        <ul>
+          <li v-for="(item,index) in list" :key="index">
+            <router-link v-bind="{to:'/photo/'+ item.id}" v-if="item.images !== undefined" >
+              <img v-lazy="item.images[0]">
+              <div id="desc" v-text="item.title">
+              </div>
+            </router-link>
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>

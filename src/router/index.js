@@ -8,6 +8,7 @@ import Register from './../components/account/Register.vue'
 import Newslist from './../components/news/newslist.vue'
 import NewsInfo from './../components/news/newsinfo.vue'
 import Photolist from './../components/photo/photolist.vue'
+import Photoinfo from './../components/photo/photoinfo.vue'
 // 将vue-router对象绑定到vue对象上
 Vue.use(Router)
 
@@ -36,6 +37,11 @@ export default new Router({
       path: '/photo/photolist',
       name: 'photolist',
       component: Photolist
+    },
+    {
+      path: '/photo/:id',
+      name: 'photoinfo',
+      component: Photoinfo
     }, {
       // 新闻资讯
       path: '/news/newslist',
